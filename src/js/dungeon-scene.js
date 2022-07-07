@@ -161,7 +161,7 @@ export default class DungeonScene extends Phaser.Scene {
         // 50% chance of a pot anywhere in the room... except don't block a door!
         const x = Phaser.Math.Between(room.left + 2, room.right - 2);
         const y = Phaser.Math.Between(room.top + 2, room.bottom - 2);
-        this.stuffLayer.weightedRandomize(x, y, 1, 1, this.ACTIVE_TILES.POT);
+        this.stuffLayer.weightedRandomize(this.ACTIVE_TILES.POT, x, y, 1, 1);
       } else {
         // 25% of either 2 or 4 towers, depending on the room size
         if (room.height >= 9) {
