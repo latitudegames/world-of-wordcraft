@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "browser-sync start --watch --server examples --directory",
+    "serve": "browser-sync start --watch --server src --directory",
     "dev": "yarn serve",
     "prettier": "prettier examples/**/*.{js,css,html} --write",
-    "deploy": "gh-pages --branch gh-pages --dist examples"
+    "deploy": "gh-pages --branch gh-pages --dist src"
   },
   "prettier": {
     "printWidth": 100
