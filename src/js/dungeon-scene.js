@@ -1,6 +1,6 @@
 import Player from "./player.js";
 import TilemapVisibility from "./tilemap-visibility.js";
-import TILES from "./ground-tile-maps.js";
+import TILES from "./tile-mappings/index.js";
 
 /**
  * Scene that generates a new dungeon
@@ -12,10 +12,9 @@ export default class DungeonScene extends Phaser.Scene {
   }
 
   init(data) {
-    this.groundMapName = data.groundTileMap ? data.groundTileMap : 'atlantis';
+    this.groundMapName = data.groundTileMap ? data.groundTileMap : "atlantis";
     this.GROUND_TILES = TILES[this.groundMapName];
-    if (data.level)
-      this.level = data.level;
+    if (data.level) this.level = data.level;
   }
 
   preload() {
@@ -73,7 +72,13 @@ export default class DungeonScene extends Phaser.Scene {
       const { x, y, width, height, left, right, top, bottom } = room;
 
       // Fill the floor with mostly clean tiles
-      this.groundLayer.weightedRandomize(this.GROUND_TILES.FLOOR, x + 1, y + 1, width - 2, height - 2);
+      this.groundLayer.weightedRandomize(
+        this.GROUND_TILES.FLOOR,
+        x + 1,
+        y + 1,
+        width - 2,
+        height - 2
+      );
 
       // Place the room corners tiles
       this.groundLayer.putTileAt(this.GROUND_TILES.WALL.TOP_LEFT, left, top);
@@ -83,22 +88,50 @@ export default class DungeonScene extends Phaser.Scene {
 
       // Fill the walls with mostly clean tiles
       this.groundLayer.weightedRandomize(this.GROUND_TILES.WALL.TOP, left + 1, top, width - 2, 1);
-      this.groundLayer.weightedRandomize(this.GROUND_TILES.WALL.BOTTOM, left + 1, bottom, width - 2, 1);
+      this.groundLayer.weightedRandomize(
+        this.GROUND_TILES.WALL.BOTTOM,
+        left + 1,
+        bottom,
+        width - 2,
+        1
+      );
       this.groundLayer.weightedRandomize(this.GROUND_TILES.WALL.LEFT, left, top + 1, 1, height - 2);
-      this.groundLayer.weightedRandomize(this.GROUND_TILES.WALL.RIGHT, right, top + 1, 1, height - 2);
+      this.groundLayer.weightedRandomize(
+        this.GROUND_TILES.WALL.RIGHT,
+        right,
+        top + 1,
+        1,
+        height - 2
+      );
 
       // Dungeons have rooms that are connected with doors. Each door has an x & y relative to the
       // room's location. Each direction has a different door to tile mapping.
       const doors = room.getDoorLocations(); // → Returns an array of {x, y} objects
       for (let i = 0; i < doors.length; i++) {
         if (doors[i].y === 0) {
-          this.groundLayer.putTilesAt(this.GROUND_TILES.DOOR.TOP, x + doors[i].x - 1, y + doors[i].y);
+          this.groundLayer.putTilesAt(
+            this.GROUND_TILES.DOOR.TOP,
+            x + doors[i].x - 1,
+            y + doors[i].y
+          );
         } else if (doors[i].y === room.height - 1) {
-          this.groundLayer.putTilesAt(this.GROUND_TILES.DOOR.BOTTOM, x + doors[i].x - 1, y + doors[i].y);
+          this.groundLayer.putTilesAt(
+            this.GROUND_TILES.DOOR.BOTTOM,
+            x + doors[i].x - 1,
+            y + doors[i].y
+          );
         } else if (doors[i].x === 0) {
-          this.groundLayer.putTilesAt(this.GROUND_TILES.DOOR.LEFT, x + doors[i].x, y + doors[i].y - 1);
+          this.groundLayer.putTilesAt(
+            this.GROUND_TILES.DOOR.LEFT,
+            x + doors[i].x,
+            y + doors[i].y - 1
+          );
         } else if (doors[i].x === room.width - 1) {
-          this.groundLayer.putTilesAt(this.GROUND_TILES.DOOR.RIGHT, x + doors[i].x, y + doors[i].y - 1);
+          this.groundLayer.putTilesAt(
+            this.GROUND_TILES.DOOR.RIGHT,
+            x + doors[i].x,
+            y + doors[i].y - 1
+          );
         }
       }
     });
@@ -140,8 +173,16 @@ export default class DungeonScene extends Phaser.Scene {
       }
     });
 
-    this.groundLayer.setCollisionByExclusion([-1, this.GROUND_TILES.FLOOR[0].index, ...this.GROUND_TILES.FLOOR[1].index]);
-    this.stuffLayer.setCollisionByExclusion([-1, this.GROUND_TILES.FLOOR[0].index, ...this.GROUND_TILES.FLOOR[1].index]);
+    this.groundLayer.setCollisionByExclusion([
+      -1,
+      this.GROUND_TILES.FLOOR[0].index,
+      ...this.GROUND_TILES.FLOOR[1].index,
+    ]);
+    this.stuffLayer.setCollisionByExclusion([
+      -1,
+      this.GROUND_TILES.FLOOR[0].index,
+      ...this.GROUND_TILES.FLOOR[1].index,
+    ]);
 
     const restartScene = (data) => {
       this.stuffLayer.setTileIndexCallback(this.GROUND_TILES.STAIRS, null);
@@ -153,9 +194,11 @@ export default class DungeonScene extends Phaser.Scene {
         this.player.destroy();
         this.scene.restart(data);
       });
-    }
+    };
 
-    this.stuffLayer.setTileIndexCallback(this.GROUND_TILES.STAIRS, () => restartScene({groundTileMap: this.groundMapName}));
+    this.stuffLayer.setTileIndexCallback(this.GROUND_TILES.STAIRS, () =>
+      restartScene({ groundTileMap: this.groundMapName })
+    );
 
     // Place the player in the first room
     const playerRoom = startRoom;
@@ -186,13 +229,12 @@ export default class DungeonScene extends Phaser.Scene {
 
     const form = `
       <input type="text" name="dungeonPrompt" placeholder="dungeon description" />
-    `
-    const dungeonPrompt = this.add.dom(100, 100).createFromHTML(form).setScrollFactor(0)
+    `;
+    const dungeonPrompt = this.add.dom(100, 100).createFromHTML(form).setScrollFactor(0);
     const returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-    returnKey.on("down", event => {
-      restartScene({groundTileMap: 'egypt', level: this.level - 1})
+    returnKey.on("down", (event) => {
+      restartScene({ groundTileMap: "egypt", level: this.level - 1 });
     });
-
   }
 
   update(time, delta) {
