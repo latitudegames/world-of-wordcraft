@@ -6,8 +6,7 @@
  *  - Character, Michele "Buch" Bucelli:
  *      https://opengameart.org/content/a-platformer-in-the-forest
  */
-import AtlantisDungeonScene from "./atlantis-dungeon-scene.js";
-import EgyptDungeonScene from "./egypt-dungeon-scene.js";
+import DungeonScene from "./dungeon-scene.js";
 
 const config = {
   type: Phaser.AUTO,
@@ -16,7 +15,7 @@ const config = {
   backgroundColor: "#000",
   parent: "game-container",
   pixelArt: true,
-  scene: AtlantisDungeonScene,
+  scene: DungeonScene,
   dom: {
     createContainer: true,
   },
