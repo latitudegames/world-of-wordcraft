@@ -12,7 +12,7 @@ export default class DungeonScene extends Phaser.Scene {
   }
 
   init(data) {
-    this.groundMapName = data.groundTileMap ? data.groundTileMap : "atlantis";
+    this.groundMapName = data.activeTileMap ? data.activeTileMap : "atlantis";
     this.ACTIVE_TILES = TILES[this.groundMapName];
     if (data.level) this.level = data.level;
   }
@@ -197,7 +197,7 @@ export default class DungeonScene extends Phaser.Scene {
     };
 
     this.stuffLayer.setTileIndexCallback(this.ACTIVE_TILES.STAIRS, () =>
-      restartScene({ groundTileMap: this.groundMapName })
+      restartScene({ activeTileMap: this.groundMapName })
     );
 
     // Place the player in the first room
@@ -233,7 +233,7 @@ export default class DungeonScene extends Phaser.Scene {
     const dungeonPrompt = this.add.dom(100, 100).createFromHTML(form).setScrollFactor(0);
     const returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
     returnKey.on("down", (event) => {
-      restartScene({ groundTileMap: "egypt", level: this.level - 1 });
+      restartScene({ activeTileMap: "egypt", level: this.level - 1 });
     });
   }
 
