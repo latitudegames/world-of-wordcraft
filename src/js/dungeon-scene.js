@@ -12,8 +12,8 @@ export default class DungeonScene extends Phaser.Scene {
   }
 
   init(data) {
-    this.groundMapName = data.activeTileMap ? data.activeTileMap : "atlantis";
-    this.ACTIVE_TILES = TILES[this.groundMapName];
+    this.activeMapName = data.activeTileMap ? data.activeTileMap : "atlantis";
+    this.ACTIVE_TILES = TILES[this.activeMapName];
     if (data.level) this.level = data.level;
   }
 
@@ -197,7 +197,7 @@ export default class DungeonScene extends Phaser.Scene {
     };
 
     this.stuffLayer.setTileIndexCallback(this.ACTIVE_TILES.STAIRS, () =>
-      restartScene({ activeTileMap: this.groundMapName })
+      restartScene({ activeTileMap: this.activeMapName })
     );
 
     // Place the player in the first room
