@@ -1,4 +1,5 @@
 import Player from "./player.js";
+import {getRoomType} from "./nlp.js";
 import TilemapVisibility from "./tilemap-visibility.js";
 import TILES from "./tile-mappings/index.js";
 
@@ -235,12 +236,9 @@ export default class DungeonScene extends Phaser.Scene {
     const returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
     returnKey.on("down", (event) => {
       const textVal = dungeonPrompt.getChildByName("dungeonPrompt").value;
-      const prompt = textVal;
-      voyage.getGeneration({ prompt }).then((res) => {
-        if (res.data.completions[0].text === "egypt")
-          restartScene({ activeTileMap: "egypt", level: this.level - 1 });
-        if (res.data.completions[0].text === "atlantis")
-          restartScene({ activeTileMap: "atlantis", level: this.level - 1 });
+      getRoomType(textVal).then((bestGuess) => {
+        console.log(bestGuess)
+        restartScene({ activeTileMap: bestGuess, level: this.level - 1 });
       });
     });
   }
