@@ -245,6 +245,8 @@ export default class DungeonScene extends Phaser.Scene {
           restartScene({ activeTileMap: "atlantis", level: this.level - 1 });
         if (res.data.completions[0].text === "clouds")
           restartScene({ activeTileMap: "clouds", level: this.level - 1 });
+        if (res.data.completions[0].text === "darkdimension")
+          restartScene({ activeTileMap: "darkdimension", level: this.level - 1 });
       });
     });
   }
