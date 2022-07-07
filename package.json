@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "browser-sync start --watch --server src --directory",
+    "serve": "browser-sync start --watch --server src",
     "dev": "yarn serve",
     "prettier": "prettier examples/**/*.{js,css,html} --write"
   },
