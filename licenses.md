@@ -1,10 +1,10 @@
 # Licenses
 
-The code, game assets and written blog posts in this repository fall under different licenses.
+The code and game assets in this repository fall under different licenses.
 
-## Example Code
+## Code
 
-The example code in examples folder falls under:
+Portions of the game code in src folder falls under:
 
 ```
 MIT License
@@ -30,40 +30,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-The only exception to that is the mikewesthad/dungeon library used in post 3, which is under the permissive [zlib License](https://github.com/mikewesthad/dungeon/blob/master/LICENSE).
+as we used [phaser-3-tilemap-blog-posts](https://github.com/mikewesthad/phaser-3-tilemap-blog-posts) as a springboard for this project.
+
+One exception of note is the mikewesthad/dungeon library, which is under the permissive [zlib License](https://github.com/mikewesthad/dungeon/blob/master/LICENSE).
 
 ## Game Assets
 
 The games assets fall under the original creator's license, so be sure to check with them if you are using them.
 
-### Post 1
-
-- [Super Mario Tileset](http://rmrk.net/index.php?topic=37002.0) by Arrow
-- [Tuxemon](https://github.com/Tuxemon/Tuxemon) tileset, sprites and level by the Tuxemon team
-- [Cat Astro Phi](http://www.photonstorm.com/games/cat-astro-phi) tileset and level by Rich Davey & Ilija Melentijević
-
-### Post 2
-
-- [0x72 Industrial Tileset](https://0x72.itch.io/16x16-industrial-tileset) by Robert, CC0
-
-### Post 3
-
-- [Dungeon Tileset](https://opengameart.org/content/top-down-dungeon-tileset) By Michele "Buch" Bucelli with Abram Connelly as the assets sponsor ([opengameart profile](https://opengameart.org/users/buch)), CC BY 3.0
+- [Time Fantasy RPG Assets](https://finalbossblues.itch.io/) by finalbossblues
 - [Animated charater sprite](https://opengameart.org/content/a-platformer-in-the-forest), Michele "Buch" Bucelli, CC0
-
-### Post 4
-
-- [Twemoji](https://github.com/twitter/twemoji), CC-BY 4.0
-- Cursor by [freepik](https://www.flaticon.com/free-icon/pointer_178432), CC-BY 3.0
-- Tilesets by Kenney, [Platformer Redux](https://www.kenney.nl/assets/platformer-art-pixel-redux) and [Abstract Platformer](https://www.kenney.nl/assets/abstract-platformer), CC 1.0 Universal
-
-### Post 5
-
-- [Twemoji](https://github.com/twitter/twemoji), CC-BY 4.0
-- Cursor by [freepik](https://www.flaticon.com/free-icon/pointer_178432), CC-BY 3.0
-- Tilesets by Kenney, [Platformer Redux](https://www.kenney.nl/assets/platformer-art-pixel-redux) and [Abstract Platformer](https://www.kenney.nl/assets/abstract-platformer), CC 1.0 Universal
-- [0x72 Industrial Tileset](https://0x72.itch.io/16x16-industrial-tileset) by Robert, CC0
-
-## Blog Posts
-
-No licenses is granted for the blog posts themselves and the associated assets (posts folder). If you like them, please share links to them rather than republishing them 👍🏽.
