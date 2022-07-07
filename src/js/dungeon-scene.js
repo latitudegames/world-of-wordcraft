@@ -232,8 +232,15 @@ export default class DungeonScene extends Phaser.Scene {
     `;
     const dungeonPrompt = this.add.dom(100, 100).createFromHTML(form).setScrollFactor(0);
     const returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-    returnKey.on("down", (event) => {
-      restartScene({ activeTileMap: "egypt", level: this.level - 1 });
+    returnKey.on("down", event => {
+      const textVal = dungeonPrompt.getChildByName("dungeonPrompt").value
+      const prompt = textVal
+      voyage.getGeneration({prompt}).then((res) => {
+        if (res.data.completions[0].text === 'egypt')
+          restartScene({activeTileMap: 'egypt', level: this.level - 1});
+        if (res.data.completions[0].text === 'atlantis')
+          restartScene({activeTileMap: 'atlantis', level: this.level - 1});
+      });
     });
   }
 
