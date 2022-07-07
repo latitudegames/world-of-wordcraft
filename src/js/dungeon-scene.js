@@ -19,6 +19,7 @@ export default class DungeonScene extends Phaser.Scene {
 
   preload() {
     this.load.image("ruineddungeons", "../assets/tilesets/ruineddungeons.png");
+    this.load.image("clouds", "../assets/tilesets/clouds.png");
     this.load.spritesheet(
       "characters",
       "../assets/spritesheets/buch-characters-64px-extruded.png",
