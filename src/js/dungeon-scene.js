@@ -18,7 +18,8 @@ export default class DungeonScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("tiles", "../assets/tilesets/ruineddungeons.png");
+    this.load.image("ruineddungeons", "../assets/tilesets/ruineddungeons.png");
+    this.load.image("clouds", "../assets/tilesets/clouds.png");
     this.load.spritesheet(
       "characters",
       "../assets/spritesheets/buch-characters-64px-extruded.png",
@@ -59,7 +60,7 @@ export default class DungeonScene extends Phaser.Scene {
       width: this.dungeon.width,
       height: this.dungeon.height,
     });
-    const tileset = map.addTilesetImage("tiles", null, 16, 16);
+    const tileset = map.addTilesetImage(this.ACTIVE_TILES.IMAGE, null, 16, 16);
     this.groundLayer = map.createBlankLayer("Ground", tileset).fill(this.ACTIVE_TILES.BLANK);
     this.stuffLayer = map.createBlankLayer("Stuff", tileset);
     const shadowLayer = map.createBlankLayer("Shadow", tileset).fill(this.ACTIVE_TILES.BLANK);
@@ -232,14 +233,14 @@ export default class DungeonScene extends Phaser.Scene {
     `;
     const dungeonPrompt = this.add.dom(100, 100).createFromHTML(form).setScrollFactor(0);
     const returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-    returnKey.on("down", event => {
-      const textVal = dungeonPrompt.getChildByName("dungeonPrompt").value
-      const prompt = textVal
-      voyage.getGeneration({prompt}).then((res) => {
-        if (res.data.completions[0].text === 'egypt')
-          restartScene({activeTileMap: 'egypt', level: this.level - 1});
-        if (res.data.completions[0].text === 'atlantis')
-          restartScene({activeTileMap: 'atlantis', level: this.level - 1});
+    returnKey.on("down", (event) => {
+      const textVal = dungeonPrompt.getChildByName("dungeonPrompt").value;
+      const prompt = textVal;
+      voyage.getGeneration({ prompt }).then((res) => {
+        if (res.data.completions[0].text === "egypt")
+          restartScene({ activeTileMap: "egypt", level: this.level - 1 });
+        if (res.data.completions[0].text === "atlantis")
+          restartScene({ activeTileMap: "atlantis", level: this.level - 1 });
       });
     });
   }
