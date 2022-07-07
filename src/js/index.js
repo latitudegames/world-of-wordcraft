@@ -17,6 +17,9 @@ const config = {
   parent: "game-container",
   pixelArt: true,
   scene: AtlantisDungeonScene,
+  dom: {
+    createContainer: true,
+  },
   physics: {
     default: "arcade",
     arcade: {

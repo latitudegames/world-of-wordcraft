@@ -20,7 +20,12 @@ export default class Player {
 
     this.sprite.anims.play("player-walk-back");
 
-    this.keys = scene.input.keyboard.createCursorKeys();
+    this.keys = scene.input.keyboard.addKeys({
+      left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+      up: Phaser.Input.Keyboard.KeyCodes.UP,
+      right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+      down: Phaser.Input.Keyboard.KeyCodes.DOWN,
+    })
   }
 
   freeze() {

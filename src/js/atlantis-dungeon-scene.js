@@ -174,6 +174,16 @@ export default class DungeonScene extends Phaser.Scene {
         backgroundColor: "#ffffff",
       })
       .setScrollFactor(0);
+
+    const form = `
+      <input type="text" name="dungeonPrompt" placeholder="dungeon description" />
+    `
+    const dungeonPrompt = this.add.dom(100, 100).createFromHTML(form).setScrollFactor(0)
+    const returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+    returnKey.on("down", event => {
+      console.log(dungeonPrompt.getChildByName("dungeonPrompt").value)
+    });
+
   }
 
   update(time, delta) {
