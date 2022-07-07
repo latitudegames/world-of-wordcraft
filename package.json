@@ -1,0 +1,24 @@
+{
+  "name": "phaser-3-tilemap-blog-posts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "browser-sync start --watch --server examples --directory",
+    "dev": "yarn serve",
+    "prettier": "prettier examples/**/*.{js,css,html} --write",
+    "deploy": "gh-pages --branch gh-pages --dist examples"
+  },
+  "prettier": {
+    "printWidth": 100
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "gh-pages": "^3.2.3",
+    "prettier": "^2.3.2"
+  },
+  "dependencies": {}
+}
