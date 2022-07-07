@@ -1,5 +1,6 @@
 // Mapping from tile name to index or indices to make the code more readable
 const TILE_MAPPING = {
+  IMAGE: "ruineddungeons",
   BLANK: 1865,
   WALL: {
     TOP_LEFT: 1768,
