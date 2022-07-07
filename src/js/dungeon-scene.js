@@ -1,6 +1,6 @@
 import Player from "./player.js";
 import TilemapVisibility from "./tilemap-visibility.js";
-import TILES from "./ground-tile-maps.js";
+import TILES from "./ground-tile-mappings.js";
 
 /**
  * Scene that generates a new dungeon

@@ -6,5 +6,4 @@ const TILES = {
   egypt: EGYPT_TILES,
 }
 
-
 export default TILES
