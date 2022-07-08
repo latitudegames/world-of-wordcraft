@@ -28,7 +28,7 @@ export default class Player {
       repeat: -1,
     });
 
-    this.sprite = scene.physics.add.sprite(x, y, "character_2", 0).setSize(26, 36);
+    this.sprite = scene.physics.add.sprite(x, y, "character_2", 0).setSize(26, 26);
     this.sprite.scaleX = 2;
     this.sprite.scaleY = 2;
     this.sprite.anims.play("player-walk-down");
