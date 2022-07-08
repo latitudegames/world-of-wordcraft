@@ -52,8 +52,8 @@ export default class DungeonScene extends Phaser.Scene {
 
     // Creating a blank tilemap with dimensions matching the dungeon
     const map = this.make.tilemap({
-      tileWidth: 48,
-      tileHeight: 48,
+      tileWidth: 80,
+      tileHeight: 80,
       width: this.dungeon.width,
       height: this.dungeon.height,
     });

@@ -29,7 +29,8 @@ export default class Player {
     });
 
     this.sprite = scene.physics.add.sprite(x, y, "character_2", 0).setSize(26, 36);
-
+    this.sprite.scaleX = 2;
+    this.sprite.scaleY = 2;
     this.sprite.anims.play("player-walk-down");
 
     this.keys = scene.input.keyboard.addKeys({
