@@ -1,5 +1,5 @@
 import Player from "./player.js";
-import {getRoomType} from "./nlp.js";
+import { getRoomType } from "./nlp.js";
 import TilemapVisibility from "./tilemap-visibility.js";
 import TILES from "./tile-mappings/index.js";
 
@@ -162,6 +162,27 @@ export default class DungeonScene extends Phaser.Scene {
         // 50% chance of a pot anywhere in the room... except don't block a door!
         const x = Phaser.Math.Between(room.left + 2, room.right - 2);
         const y = Phaser.Math.Between(room.top + 2, room.bottom - 2);
+        // if (this.activeMapName === "atlantis") {
+        //   this.ACTIVE_TILES.POND.forEach((pondColumn, index) => {
+        //     const spreadIndices = {
+        //       0: -1,
+        //       1: 0,
+        //       2: 1,
+        //     };
+        //     const centerSpreadIndex = room.centerX + spreadIndices[index];
+        //     console.log({
+        //       centerSpreadIndex,
+        //       roomCenterX: room.centerX,
+        //       target: this.ACTIVE_TILES.POND[index],
+        //       index,
+        //     });
+        //     this.stuffLayer.putTilesAt(
+        //       this.ACTIVE_TILES.POND[index],
+        //       centerSpreadIndex,
+        //       room.centerY + 1
+        //     );
+        //   });
+        // }
         this.stuffLayer.weightedRandomize(this.ACTIVE_TILES.POT, x, y, 1, 1);
       } else {
         // 25% of either 2 or 4 towers, depending on the room size
@@ -239,7 +260,7 @@ export default class DungeonScene extends Phaser.Scene {
     returnKey.on("down", (event) => {
       const textVal = dungeonPrompt.getChildByName("dungeonPrompt").value;
       getRoomType(textVal).then((bestGuess) => {
-        console.log(bestGuess)
+        console.log(bestGuess);
         restartScene({ activeTileMap: bestGuess, level: this.level - 1 });
       });
     });
