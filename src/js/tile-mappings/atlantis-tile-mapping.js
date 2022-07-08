@@ -56,6 +56,26 @@ const TILE_MAPPING = {
     [625],
     [674]
   ],
+  // prettier-ignore
+  POND: [
+    [
+      [173], 
+      [222], 
+      [271]
+    ]
+  ,
+    [
+      [174], 
+      [223], 
+      [272]
+    ]
+  ,
+    [
+      [175], 
+      [224], 
+      [273]
+    ]
+  ],
 };
 
 export default TILE_MAPPING;
