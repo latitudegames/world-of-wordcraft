@@ -162,6 +162,7 @@ export default class DungeonScene extends Phaser.Scene {
         // 50% chance of a pot anywhere in the room... except don't block a door!
         const x = Phaser.Math.Between(room.left + 2, room.right - 2);
         const y = Phaser.Math.Between(room.top + 2, room.bottom - 2);
+        // TODO @seang: we need better calculation for tile overlap and door/path blocking
         // if (this.activeMapName === "atlantis") {
         //   this.ACTIVE_TILES.POND.forEach((pondColumn, index) => {
         //     const spreadIndices = {
