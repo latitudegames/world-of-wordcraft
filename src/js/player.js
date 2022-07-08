@@ -4,28 +4,40 @@ export default class Player {
 
     const anims = scene.anims;
     anims.create({
-      key: "player-walk",
-      frames: anims.generateFrameNumbers("characters", { start: 46, end: 49 }),
+      key: "player-walk-right",
+      frames: anims.generateFrameNumbers("character_2", { start: 24, end: 26 }),
       frameRate: 8,
       repeat: -1,
     });
     anims.create({
-      key: "player-walk-back",
-      frames: anims.generateFrameNumbers("characters", { start: 65, end: 68 }),
+      key: "player-walk-left",
+      frames: anims.generateFrameNumbers("character_2", { start: 12, end: 14 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+    anims.create({
+      key: "player-walk-up",
+      frames: anims.generateFrameNumbers("character_2", { start: 36, end: 38 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+    anims.create({
+      key: "player-walk-down",
+      frames: anims.generateFrameNumbers("character_2", { start: 0, end: 2 }),
       frameRate: 8,
       repeat: -1,
     });
 
-    this.sprite = scene.physics.add.sprite(x, y, "characters", 0).setSize(22, 33).setOffset(23, 27);
+    this.sprite = scene.physics.add.sprite(x, y, "character_2", 0).setSize(26, 36);
 
-    this.sprite.anims.play("player-walk-back");
+    this.sprite.anims.play("player-walk-down");
 
     this.keys = scene.input.keyboard.addKeys({
       left: Phaser.Input.Keyboard.KeyCodes.LEFT,
       up: Phaser.Input.Keyboard.KeyCodes.UP,
       right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
       down: Phaser.Input.Keyboard.KeyCodes.DOWN,
-    })
+    });
   }
 
   freeze() {
@@ -44,10 +56,8 @@ export default class Player {
     // Horizontal movement
     if (keys.left.isDown) {
       sprite.body.setVelocityX(-speed);
-      sprite.setFlipX(true);
     } else if (keys.right.isDown) {
       sprite.body.setVelocityX(speed);
-      sprite.setFlipX(false);
     }
 
     // Vertical movement
@@ -61,16 +71,20 @@ export default class Player {
     sprite.body.velocity.normalize().scale(speed);
 
     // Update the animation last and give left/right animations precedence over up/down animations
-    if (keys.left.isDown || keys.right.isDown || keys.down.isDown) {
-      sprite.anims.play("player-walk", true);
+    if (keys.right.isDown) {
+      sprite.anims.play("player-walk-right", true);
+    } else if (keys.left.isDown) {
+      sprite.anims.play("player-walk-left", true);
+    } else if (keys.down.isDown) {
+      sprite.anims.play("player-walk-down", true);
     } else if (keys.up.isDown) {
-      sprite.anims.play("player-walk-back", true);
+      sprite.anims.play("player-walk-up", true);
     } else {
       sprite.anims.stop();
 
       // If we were moving, pick and idle frame to use
-      if (prevVelocity.y < 0) sprite.setTexture("characters", 65);
-      else sprite.setTexture("characters", 46);
+      if (prevVelocity.y < 0) sprite.setTexture("character_2", 1);
+      else sprite.setTexture("character_2", 1);
     }
   }
 
