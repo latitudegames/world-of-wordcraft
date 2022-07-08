@@ -23,16 +23,10 @@ export default class DungeonScene extends Phaser.Scene {
     this.load.image("clouds", "../assets/tilesets/clouds.png");
     this.load.image("darkdimension", "../assets/tilesets/darkdimension.png");
 
-    this.load.spritesheet(
-      "characters",
-      "../assets/spritesheets/buch-characters-64px-extruded.png",
-      {
-        frameWidth: 64,
-        frameHeight: 64,
-        margin: 1,
-        spacing: 2,
-      }
-    );
+    this.load.spritesheet("character_2", "../assets/spritesheets/character_2.png", {
+      frameWidth: 26,
+      frameHeight: 36,
+    });
   }
 
   create() {
