@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html -p 8000",
-    "build": "parcel build src/index.html --out-dir dist",
+    "build": "parcel build src/index.html --out-dir dist --no-minify",
     "dev": "yarn start",
     "prettier": "prettier src/**/*.{js,css,html} --write"
   },
@@ -20,8 +20,10 @@
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "browser-sync": "^2.27.5",
+    "cssnano": "^5.1.12",
     "parcel-plugin-clean-easy": "^1.0.2",
     "parcel-plugin-static-files-copy": "^2.4.3",
+    "postcss": "^8.2.15",
     "prettier": "^2.3.2"
   },
   "browserslist": [
