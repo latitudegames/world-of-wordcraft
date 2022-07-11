@@ -1,4 +1,12 @@
-node_modules
+# macOS
 .DS_Store
-passwords.js
 
+# Dependecies
+node_modules
+
+# Build Files
+.cache
+dist
+
+# Local Env
+passwords.js
