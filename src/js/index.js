@@ -6,9 +6,11 @@
  *  - Character, Michele "Buch" Bucelli:
  *      https://opengameart.org/content/a-platformer-in-the-forest
  */
+
 import DungeonScene from "./dungeon-scene.js";
 
 const config = {
+  // @ts-ignore
   type: Phaser.AUTO,
   width: 800,
   height: 600,
@@ -27,4 +29,5 @@ const config = {
   },
 };
 
+// @ts-ignore
 const game = new Phaser.Game(config);
