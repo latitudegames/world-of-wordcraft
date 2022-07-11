@@ -27,9 +27,7 @@
   "browserslist": [
     "last 1 Chrome version"
   ],
-  "dependencies": {
-    "phaser": "^3.55.2"
-  },
+  "dependencies": {},
   "parcelCleanPaths": [
     "dist"
   ],
