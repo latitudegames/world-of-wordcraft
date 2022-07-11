@@ -2,13 +2,13 @@ import Player from "./player.js";
 import { getRoomType } from "./nlp.js";
 import TilemapVisibility from "./tilemap-visibility.js";
 import TILES from "./tile-mappings/index.js";
-
 /**
  * Scene that generates a new dungeon
  */
+// @ts-ignore
 export default class DungeonScene extends Phaser.Scene {
   constructor() {
-    super();
+    super({});
     this.level = 0;
   }
 
@@ -19,11 +19,15 @@ export default class DungeonScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("ruineddungeons", "../assets/tilesets/ruineddungeons.png");
-    this.load.image("clouds", "../assets/tilesets/clouds.png");
-    this.load.image("darkdimension", "../assets/tilesets/darkdimension.png");
+    // @ts-ignore
+    this.load.image("ruineddungeons", "./assets/tilesets/ruineddungeons.png");
+    // @ts-ignore
+    this.load.image("clouds", "./assets/tilesets/clouds.png");
+    // @ts-ignore
+    this.load.image("darkdimension", "./assets/tilesets/darkdimension.png");
 
-    this.load.spritesheet("character_2", "../assets/spritesheets/character_2.png", {
+    // @ts-ignore
+    this.load.spritesheet("character_2", "./assets/spritesheets/character_2.png", {
       frameWidth: 26,
       frameHeight: 36,
     });
@@ -37,6 +41,7 @@ export default class DungeonScene extends Phaser.Scene {
     //  - Rooms should only have odd number dimensions so that they have a center tile.
     //  - Doors should be at least 2 tiles away from corners, so that we can place a corner tile on
     //    either side of the door location
+    // @ts-ignore
     this.dungeon = new Dungeon({
       width: 50,
       height: 50,
@@ -51,6 +56,7 @@ export default class DungeonScene extends Phaser.Scene {
     this.dungeon.drawToConsole();
 
     // Creating a blank tilemap with dimensions matching the dungeon
+    // @ts-ignore
     const map = this.make.tilemap({
       tileWidth: 80,
       tileHeight: 80,
@@ -140,10 +146,13 @@ export default class DungeonScene extends Phaser.Scene {
     //  - An array of 90% of the remaining rooms, for placing random stuff (leaving 10% empty)
     const rooms = this.dungeon.rooms.slice();
     const startRoom = rooms.shift();
+    // @ts-ignore
     const endRoom = Phaser.Utils.Array.RemoveRandomElement(rooms);
+    // @ts-ignore
     const otherRooms = Phaser.Utils.Array.Shuffle(rooms).slice(0, rooms.length * 0.9);
 
     // Place the stairs
+    // @ts-ignore
     this.stuffLayer.putTileAt(this.ACTIVE_TILES.STAIRS, endRoom.centerX, endRoom.centerY);
 
     // Place stuff in the 90% "otherRooms"
@@ -154,7 +163,9 @@ export default class DungeonScene extends Phaser.Scene {
         this.stuffLayer.putTileAt(this.ACTIVE_TILES.CHEST, room.centerX, room.centerY);
       } else if (rand <= 0.5) {
         // 50% chance of a pot anywhere in the room... except don't block a door!
+        // @ts-ignore
         const x = Phaser.Math.Between(room.left + 2, room.right - 2);
+        // @ts-ignore
         const y = Phaser.Math.Between(room.top + 2, room.bottom - 2);
         // TODO @seang: we need better calculation for tile overlap and door/path blocking
         // if (this.activeMapName === "atlantis") {
@@ -205,19 +216,23 @@ export default class DungeonScene extends Phaser.Scene {
     ]);
 
     const restartScene = (data) => {
-      this.stuffLayer.setTileIndexCallback(this.ACTIVE_TILES.STAIRS, null);
+      this.stuffLayer.setTileIndexCallback(this.ACTIVE_TILES.STAIRS, null, {});
       this.hasPlayerReachedStairs = true;
       this.player.freeze();
+      // @ts-ignore
       const cam = this.cameras.main;
       cam.fade(250, 0, 0, 0);
       cam.once("camerafadeoutcomplete", () => {
         this.player.destroy();
+        // @ts-ignore
         this.scene.restart(data);
       });
     };
 
-    this.stuffLayer.setTileIndexCallback(this.ACTIVE_TILES.STAIRS, () =>
-      restartScene({ activeTileMap: this.activeMapName })
+    this.stuffLayer.setTileIndexCallback(
+      this.ACTIVE_TILES.STAIRS,
+      () => restartScene({ activeTileMap: this.activeMapName }),
+      {}
     );
 
     // Place the player in the first room
@@ -227,10 +242,13 @@ export default class DungeonScene extends Phaser.Scene {
     this.player = new Player(this, x, y);
 
     // Watch the player and tilemap layers for collisions, for the duration of the scene:
+    // @ts-ignore
     this.physics.add.collider(this.player.sprite, this.groundLayer);
+    // @ts-ignore
     this.physics.add.collider(this.player.sprite, this.stuffLayer);
 
     // Phaser supports multiple cameras, but you can access the default camera like this:
+    // @ts-ignore
     const camera = this.cameras.main;
 
     // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
@@ -238,9 +256,11 @@ export default class DungeonScene extends Phaser.Scene {
     camera.startFollow(this.player.sprite);
 
     // Help text that has a "fixed" position on the screen
+    // @ts-ignore
     this.add
       .text(16, 16, `Find the stairs. Go deeper.\nCurrent level: ${this.level}`, {
         font: "18px monospace",
+        // @ts-ignore
         fill: "#000000",
         padding: { x: 20, y: 10 },
         backgroundColor: "#ffffff",
@@ -250,9 +270,14 @@ export default class DungeonScene extends Phaser.Scene {
     const form = `
       <input type="text" name="dungeonPrompt" placeholder="dungeon description" />
     `;
+    // @ts-ignore
     const dungeonPrompt = this.add.dom(100, 100).createFromHTML(form).setScrollFactor(0);
+    // @ts-ignore
     const returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
+    // @ts-ignore
+    // @ts-ignore
     returnKey.on("down", (event) => {
+      // @ts-ignore
       const textVal = dungeonPrompt.getChildByName("dungeonPrompt").value;
       getRoomType(textVal).then((bestGuess) => {
         console.log(bestGuess);
@@ -261,6 +286,8 @@ export default class DungeonScene extends Phaser.Scene {
     });
   }
 
+  // @ts-ignore
+  // @ts-ignore
   update(time, delta) {
     if (this.hasPlayerReachedStairs) return;
 
