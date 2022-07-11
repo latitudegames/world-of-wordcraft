@@ -16,5 +16,24 @@ voyage = {
     }
 
     throw Exception(response.status)
+  },
+  getClipEmbed: async function(caption) {
+    const response = await fetch(
+      `https://api.latitude.io/vendor/coreweave/v1/models/clip-encoder/engines/clip-encoder/completions`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': FIX_ME_API_KEY,
+        },
+        body: JSON.stringify({text: caption}),
+      }
+    )
+    if (response.status === 200) {
+      return { data: await response.json()}
+    }
+
+    throw Exception(response.status)
+
   }
 }
