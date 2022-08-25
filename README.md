@@ -14,7 +14,7 @@ yarn
 This will install the needed dependencies. Then you can run:
 
 ```
-yarn serve
+yarn dev
 ```
 
 This will open up a browser with the game running.
