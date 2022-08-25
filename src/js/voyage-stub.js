@@ -10,7 +10,8 @@ voyage = {
       body: JSON.stringify(options),
     });
     if (response.status === 200) {
-      return { data: await response.json() };
+      const res = await response.json();
+      return res;
     }
 
     throw new Error(`${response.status}`);
@@ -28,7 +29,8 @@ voyage = {
       }
     );
     if (response.status === 200) {
-      return { data: await response.json() };
+      const res = await response.json();
+      return res;
     }
 
     throw new Error(`${response.status}`);
