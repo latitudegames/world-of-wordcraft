@@ -20,17 +20,30 @@ export default class DungeonScene extends Phaser.Scene {
 
   preload() {
     // @ts-ignore
-    this.load.image("ruineddungeons", "./assets/tilesets/ruineddungeons.png");
+    this.load.image(
+      "ruineddungeons",
+      "https://world-of-wordcraft.s3.us-east-2.amazonaws.com/dist/assets/tilesets/ruineddungeons.png"
+    );
     // @ts-ignore
-    this.load.image("clouds", "./assets/tilesets/clouds.png");
+    this.load.image(
+      "clouds",
+      "https://world-of-wordcraft.s3.us-east-2.amazonaws.com/dist/assets/tilesets/clouds.png"
+    );
     // @ts-ignore
-    this.load.image("darkdimension", "./assets/tilesets/darkdimension.png");
+    this.load.image(
+      "darkdimension",
+      "https://world-of-wordcraft.s3.us-east-2.amazonaws.com/dist/assets/tilesets/darkdimension.png"
+    );
 
     // @ts-ignore
-    this.load.spritesheet("character_2", "./assets/spritesheets/character_2.png", {
-      frameWidth: 26,
-      frameHeight: 36,
-    });
+    this.load.spritesheet(
+      "character_2",
+      "https://world-of-wordcraft.s3.us-east-2.amazonaws.com/dist/assets/spritesheets/character_2.png",
+      {
+        frameWidth: 26,
+        frameHeight: 36,
+      }
+    );
   }
 
   create() {
