@@ -6,7 +6,7 @@ const roomTypes = ["egypt", "atlantis", "clouds", "aztec", "darkdimension"];
 export const getRoomType = async (textVal) => {
   const res = await voyage.getClipEmbed(textVal);
   console.log("Room Type Response", res);
-  const scores = roomTypes.map((room) => dot(res.data.text_embed, clipEmbeds[room]));
+  const scores = roomTypes.map((room) => dot(res.text_embed, clipEmbeds[room]));
   const maxIdx = scores.indexOf(Math.max(...scores));
   return roomTypes[maxIdx];
 };
