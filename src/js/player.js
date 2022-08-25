@@ -34,9 +34,13 @@ export default class Player {
     this.sprite.anims.play("player-walk-down");
 
     this.keys = scene.input.keyboard.addKeys({
+      // @ts-ignore
       left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+      // @ts-ignore
       up: Phaser.Input.Keyboard.KeyCodes.UP,
+      // @ts-ignore
       right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+      // @ts-ignore
       down: Phaser.Input.Keyboard.KeyCodes.DOWN,
     });
   }
