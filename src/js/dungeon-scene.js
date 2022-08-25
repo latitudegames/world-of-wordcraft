@@ -271,20 +271,27 @@ export default class DungeonScene extends Phaser.Scene {
     // Help text that has a "fixed" position on the screen
     // @ts-ignore
     this.add
-      .text(16, 16, `Find the stairs. Go deeper.\nCurrent level: ${this.level}`, {
-        font: "18px monospace",
-        // @ts-ignore
-        fill: "#000000",
-        padding: { x: 20, y: 10 },
-        backgroundColor: "#ffffff",
-      })
+      .text(
+        16,
+        16,
+        `Find the stairs. Go deeper.\nEnter a new description to change your surroundings\n\nCurrent level: ${this.level}`,
+        {
+          font: "18px monospace",
+          // @ts-ignore
+          fill: "#000000",
+          padding: { x: 20, y: 10 },
+          backgroundColor: "#ffffff",
+        }
+      )
       .setScrollFactor(0);
+    // @ts-ignore
 
     const form = `
-      <input type="text" name="dungeonPrompt" placeholder="dungeon description" />
+      <input type="text" style="width:300px;margin-left:135px" name="dungeonPrompt" placeholder="Dungeon description.." />
     `;
     // @ts-ignore
-    const dungeonPrompt = this.add.dom(100, 100).createFromHTML(form).setScrollFactor(0);
+    const dungeonPrompt = this.add.dom(100, 130).createFromHTML(form).setScrollFactor(0);
+    //
     // @ts-ignore
     const returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
     // @ts-ignore
