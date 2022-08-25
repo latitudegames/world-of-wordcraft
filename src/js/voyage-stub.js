@@ -5,8 +5,7 @@ voyage = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // @ts-ignore
-        "x-api-key": FIX_ME_API_KEY,
+        "x-api-key": "FIX_ME_API_KEY",
       },
       body: JSON.stringify(options),
     });
@@ -14,8 +13,7 @@ voyage = {
       return { data: await response.json() };
     }
 
-    // @ts-ignore
-    throw Exception(response.status);
+    throw new Error(`${response.status}`);
   },
   getClipEmbed: async function (caption) {
     const response = await fetch(
@@ -24,8 +22,7 @@ voyage = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // @ts-ignore
-          "x-api-key": FIX_ME_API_KEY,
+          "x-api-key": "FIX_ME_API_KEY",
         },
         body: JSON.stringify({ text: caption }),
       }
@@ -34,7 +31,6 @@ voyage = {
       return { data: await response.json() };
     }
 
-    // @ts-ignore
-    throw Exception(response.status);
+    throw new Error(`${response.status}`);
   },
 };
